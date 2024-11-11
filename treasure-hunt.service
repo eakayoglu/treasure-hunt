@@ -1,0 +1,18 @@
+# /etc/systemd/system/treasure-hunt.service
+[Unit]
+Description=Treasure Hunt Game Service
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/treasure-hunt
+Environment=FLASK_ENV=production
+Environment=FLASK_APP=app.py
+ExecStart=/usr/bin/python app.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

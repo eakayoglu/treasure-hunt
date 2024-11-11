@@ -1,0 +1,83 @@
+#!/bin/bash
+# /usr/local/bin/treasure-hunt
+
+# Renkli çıktı için
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Logo
+echo -e "${YELLOW}"
+echo "🎮 Hazine Avı Oyunu Yöneticisi 🎯"
+echo "--------------------------------"
+echo -e "${NC}"
+
+# Fonksiyonlar
+check_status() {
+    if systemctl is-active --quiet treasure-hunt; then
+        echo -e "${GREEN}Servis ÇALIŞIYOR ✓${NC}"
+        echo "URL: http://$(hostname -I | awk '{print $1}'):5000"
+    else
+        echo -e "${RED}Servis ÇALIŞMIYOR ✗${NC}"
+    fi
+}
+
+start_service() {
+    echo "Servis başlatılıyor..."
+    sudo systemctl start treasure-hunt
+    sleep 2
+    check_status
+}
+
+stop_service() {
+    echo "Servis durduruluyor..."
+    sudo systemctl stop treasure-hunt
+    sleep 2
+    check_status
+}
+
+restart_service() {
+    echo "Servis yeniden başlatılıyor..."
+    sudo systemctl restart treasure-hunt
+    sleep 2
+    check_status
+}
+
+show_logs() {
+    echo "Son 50 log satırı gösteriliyor..."
+    echo "Çıkmak için CTRL+C kullanın"
+    sudo journalctl -u treasure-hunt -n 50 -f
+}
+
+# Ana menü
+case "$1" in
+    start)
+        start_service
+        ;;
+    stop)
+        stop_service
+        ;;
+    restart)
+        restart_service
+        ;;
+    status)
+        check_status
+        ;;
+    logs)
+        show_logs
+        ;;
+    *)
+        echo "Kullanım: treasure-hunt {start|stop|restart|status|logs}"
+        echo
+        echo "Komutlar:"
+        echo "  start   : Servisi başlatır"
+        echo "  stop    : Servisi durdurur"
+        echo "  restart : Servisi yeniden başlatır"
+        echo "  status  : Servis durumunu gösterir"
+        echo "  logs    : Servis loglarını gösterir"
+        exit 1
+        ;;
+esac
+
+exit 0
