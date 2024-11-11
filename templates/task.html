@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Görev - Hazine Avı</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ task.title }}</h1>
+        {% if task.video_url %}       
+        <video class="task-video" controls autoplay>
+            <source src="{{ url_for('static', filename=task.video_url) }}" type="video/mp4">
+            Tarayıcınız video oynatmayı desteklemiyor.
+        </video>
+        {% endif %}
+        <div class="task-description">
+            {{ task.description }}
+        </div>
+        <div class="next-clue">
+            <p>🎯 Sonraki İpucu:</p>
+            <p>{{ task.next_clue }}</p>
+        </div>
+        <button onclick="window.location.href='/reset_task'" class="restart-button">
+            Ana Sayfaya Dön
+        </button>
+    </div>
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        // Mevcut görevin ID'sini saklayalım
+        const currentTaskId = '{{ task.id }}';
+        
+        // Her 1 saniyede bir yeni görev kontrolü
+        setInterval(() => {
+            fetch('/get_current_task')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.task) {
+                        // Eğer yeni bir görev varsa ve mevcut görevden farklıysa
+                        if (data.task.id !== currentTaskId) {
+                            // Konfeti efekti göster
+                            showCelebration();
+                            // Kısa bir gecikme ile yeni göreve yönlendir
+                            setTimeout(() => {
+                                window.location.href = `/task/${data.task.id}`;
+                            }, 1000);
+                        }
+                    }
+                });
+        }, 1000);
+
+        // Konfeti efekti için fonksiyon
+        function showCelebration() {
+            const celebration = document.getElementById('celebration');
+            celebration.style.display = 'block';
+            
+            // Konfeti parçacıkları oluştur
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confetti.style.animation = `fall ${Math.random() * 2 + 1}s linear`;
+                celebration.appendChild(confetti);
+            }
+
+            // Konfeti animasyonunu temizle
+            setTimeout(() => {
+                celebration.style.display = 'none';
+                celebration.innerHTML = '';
+            }, 2000);
+        }
+
+        // Rastgele renk üretme fonksiyonu
+        function getRandomColor() {
+            const colors = ['#FF6B6B', '#4A90E2', '#2ECC71', '#FFD700', '#9B59B6'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+
+    <style>
+        @keyframes fall {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</body>
+</html>

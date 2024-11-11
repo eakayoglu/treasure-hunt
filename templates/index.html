@@ -1,0 +1,32 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>DEMIR - Hazine Avı!</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="user-name">Demir</h1>
+        <h1>🎯 Hazine Avına Hoş Geldin! 🎯</h1>
+        <img src="/static/mascot.jpeg" alt="Maskot" class="mascot">
+        <div class="instructions">
+            <p>Hazine avı başlamak üzere!</p>
+            <p>İlk ipucunu bulmak için kartını okut!</p>
+        </div>
+    </div>
+    <script>
+        // Her 2 saniyede bir yeni görev kontrolü
+        setInterval(() => {
+            fetch('/get_current_task')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.task) {
+                        window.location.href = `/task/${data.task.id}`;
+                    }
+                });
+        }, 2000);
+    </script>
+</body>
+</html>
