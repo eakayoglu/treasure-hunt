@@ -1,0 +1,69 @@
+{
+    "tasks": [
+      {
+        "id": "1",
+        "title": "Renk Avı",
+        "description": "Salonda Kare veya daire şeklinde bir renk objeleri bul ve göster.",
+        "nfc_uid": "584188529753",
+        "video_url": "videos/task_01.mp4",
+        "next_clue": "Bu objelerin bir tanesinin altında 2 numaralı görevini bulacaksın."
+      },
+      {
+        "id": "2",
+        "title": "Müzik Görevi",
+        "description": "En sevdiğin şarkıyı söyle veya dans et.",
+        "nfc_uid": "584183733440",
+        "video_url": "videos/task_02.mp4",
+        "next_clue": "Danstan sonra, televizyonun arkasında 3 numaralı görevini bulacaksın."
+      },
+      {
+        "id": "3",
+        "title": "Zıplama Görevi",
+        "description": "10 kez zıpla, sonra yüksek bir 'Hop!' de!",
+        "nfc_uid": "584192994234",
+        "video_url": "videos/task_03.mp4",
+        "next_clue": "Spor ekipmanlarının orada 4 numaralı görevini bulacaksın."
+      },
+      {
+        "id": "4",
+        "title": "Hayvan Yürüyüşü",
+        "description": "Bir tavşan gibi zıplayarak, odanda ki beyaz tavşanı bul.",
+        "nfc_uid": "584191630303",
+        "video_url": "videos/task_04.mp4",
+        "next_clue": "Tavşanın kucağında 5 numaralı görevini bulacaksın."
+      },
+      {
+        "id": "5",
+        "title": "Bacak Sallama Görevi",
+        "description": "Bir sandalyeye otur ve bacaklarını 10 saniye boyunca sallayarak keyif yap.",
+        "nfc_uid": "584190446385",
+        "video_url": "videos/task_05.mp4",
+        "next_clue": " 6 numaralı görevini bulacaksın."
+      },
+      {
+        "id": "6",
+        "title": "Harita Görevi",
+        "description": "Evin bir odasında bir harita bul ve hazine yerine git.",
+        "nfc_uid": "584193412903",
+        "video_url": "videos/task_06.mp4",
+        "next_clue": "Haritadaki hazine yerine gittiğinde süpriz ile birlikte 7 numaralı görevini bulacaksın."
+      },
+      {
+        "id": "7",
+        "title": "Korsan - Harita Görevi",
+        "description": "Evin bir odasında bir harita bul ya da çiz ve Korsan gibi konuşarak git.",
+        "nfc_uid": "584197990274",
+        "video_url": "videos/task_07.mp4",
+        "next_clue": " 8 numaralı son görevini bulacaksın."
+      },
+      {
+        "id": "8",
+        "title": "Şef Görevi - Resim Yapma Görevi",
+        "description": "Hayali bir yemek yap ve içine 3 farklı 'malzeme' ekle. Hadi yemeği çizelim.",
+        "nfc_uid": "584196444941",
+        "video_url": "videos/task_08.mp4",
+        "next_clue": "Süper! Bütün görevleri tamamladın!!!"
+      }
+    ]
+  }
+  
