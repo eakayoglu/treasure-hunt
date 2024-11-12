@@ -27,9 +27,9 @@ Bu proje, bir Raspberry Pi ve NFC okuyucu kullanarak, çocuklar için interaktif
 
     ```bash
     pip install flask RPi.GPIO mfrc522
-
+    ```
     or 
-
+    ```bash
     pip install -r requirements.txt
     ```
 
@@ -52,9 +52,9 @@ Bu proje, bir Raspberry Pi ve NFC okuyucu kullanarak, çocuklar için interaktif
 
     ```bash
     flask run --host=0.0.0.0
-
+    ```
     or 
-
+    ```bash
     python app.py
     ```
 
